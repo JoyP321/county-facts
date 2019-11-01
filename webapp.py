@@ -19,3 +19,6 @@ def get_state_options(counties):
   for state in listOfStates:
     options = options + Markup("<option value=\"" + state + "\">" + state + "</option>")
   return options
+
+if __name__=="__main__":
+    app.run(debug=False)
