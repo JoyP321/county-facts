@@ -8,7 +8,7 @@ app = Flask(__name__)
 def render_main(): 
   with open('county_demographics.json') as demographics_data:
     counties = json.load(demographics_data)
-  return render_template('home.html', options = get_state_options(counties))
+  return render_template('home.html', options = get_state_options(counties), reply = "")
 
 def get_state_options(counties):
   listOfStates = []
@@ -23,7 +23,7 @@ def get_state_options(counties):
 @app.route("/response")
 def get_fun_fact(counties, state):
   state = request.args['state']
-  
+  return render_template('home.html', options = get_state_options(counties), reply = state)
   
 
 if __name__=="__main__":
