@@ -20,7 +20,6 @@ def get_state_options(counties):
     options = options + Markup("<option value=\"" + state + "\">" + state + "</option>")
   return options
 
-@app.route("/response")
 def get_fun_fact(counties):
   state = request.args['state']
   return state
