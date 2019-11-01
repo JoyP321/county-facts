@@ -22,7 +22,8 @@ def get_state_options(counties):
 
 @app.route("/response")
 def get_fun_fact(counties, state):
-  s = request.args[
+  state = request.args['state']
+  
   
 
 if __name__=="__main__":
