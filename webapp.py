@@ -5,8 +5,8 @@ import json
 app = Flask(__name__)
 
 @app.route("/")
-def render_main(): 
-  return render_template('home.html')
+def render_main(counties): 
+  return render_template('home.html', options = get_state_options(counties))
 
 def get_state_options(counties):
   listOfStates = []
@@ -15,5 +15,5 @@ def get_state_options(counties):
       listOfStates.append(county['State'])
   options=""
   for state in listOfStates:
-    options = options +
+    options = options + "<option value=\" " +state+ "\">" +state + "</option>"
   return options
