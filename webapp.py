@@ -10,7 +10,7 @@ def render_main():
   return render_template('home.html', options = get_state_options(counties), reply = "hey")
 
 @app.route("/reply")
-def render_main(): 
+def render_main2(): 
   with open('county_demographics.json') as demographics_data:
     counties = json.load(demographics_data)
   return render_template('home.html', options = get_state_options(counties), reply = "het2")
