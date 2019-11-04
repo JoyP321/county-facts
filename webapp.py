@@ -7,8 +7,13 @@ app = Flask(__name__)
 def render_main(): 
   with open('county_demographics.json') as demographics_data:
     counties = json.load(demographics_data)
-  print(request.args['state'])
   return render_template('home.html', options = get_state_options(counties), reply = "hey")
+
+@app.route("/reply")
+def render_main(): 
+  with open('county_demographics.json') as demographics_data:
+    counties = json.load(demographics_data)
+  return render_template('home.html', options = get_state_options(counties), reply = "het2")
 
 def get_state_options(counties):
   listOfStates = []
