@@ -4,13 +4,10 @@ import json
 app = Flask(__name__)
 
 @app.route("/")
-first =2
 def render_main(): 
-  first = first-1
   with open('county_demographics.json') as demographics_data:
     counties = json.load(demographics_data)
-  if first <= 0:
-    print(request.args['state'])
+  print(request.args['state'])
   return render_template('home.html', options = get_state_options(counties), reply = "hey")
 
 def get_state_options(counties):
