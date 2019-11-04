@@ -29,7 +29,7 @@ def get_fun_fact(counties, state):
   count =0
   for county in counties:
     if county['State'] == state:
-      count++
+      count+= 1
   fact = "Your state, " + state + ", has "+ count + " counties in it"
   return state
   
