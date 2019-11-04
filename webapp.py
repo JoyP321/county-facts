@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def render_main(): 
-  first--
+  first=first-1
   with open('county_demographics.json') as demographics_data:
     counties = json.load(demographics_data)
   if first <= 0:
