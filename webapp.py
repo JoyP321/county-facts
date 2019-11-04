@@ -22,8 +22,8 @@ def get_state_options(counties):
   return options
 
 def get_fun_fact(counties):
-  state = request.args['state']
-  return state
+  """state = request.args['state']"""
+  return 'state'
   
 
 if __name__=="__main__":
