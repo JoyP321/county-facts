@@ -8,9 +8,7 @@ app = Flask(__name__)
 def render_main(): 
   with open('county_demographics.json') as demographics_data:
     counties = json.load(demographics_data)
-  if get_fun_fact(counties) is not 'none':
-    return render_template('home.html', options = get_state_options(counties), reply = "something")
-  else:
+    print(get_fun_fact(counties))
     return render_template('home.html', options = get_state_options(counties), reply = "none")
 
 def get_state_options(counties):
