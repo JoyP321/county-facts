@@ -31,7 +31,7 @@ def get_fun_fact(counties, state):
     if county['State'] == state:
       count+= 1
   fact = "Fun Fact: Your state, " + str(state) + ", has "+ str(count) + " counties in it."
-  return state
+  return fact
   
 
 if __name__=="__main__":
