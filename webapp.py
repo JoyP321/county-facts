@@ -13,7 +13,11 @@ def render_main():
 def render_main2(): 
   with open('county_demographics.json') as demographics_data:
     counties = json.load(demographics_data)
-  return render_template('home.html', options = get_state_options(counties), reply = get_fun_fact2(counties, request.args['state']))
+  randomVal = random.randint(0, 1)
+  if randomVal == 0:
+    return render_template('home.html', options = get_state_options(counties), reply = get_fun_fact1(counties, request.args['state']))
+  else:
+    return render_template('home.html', options = get_state_options(counties), reply = get_fun_fact1(counties, request.args['state']))
 
 def get_state_options(counties):
   listOfStates = []
