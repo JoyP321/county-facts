@@ -14,12 +14,14 @@ def render_main():
 def render_main2(): 
   with open('county_demographics.json') as demographics_data:
     counties = json.load(demographics_data)
-  randomVal = int(random.random()*2)
+  randomVal = int(random.random()*3)
   print(randomVal)
   if randomVal == 0:
     return render_template('home.html', options = get_state_options(counties), reply = get_fun_fact1(counties, request.args['state']))
-  else:
+  else if randomVal == 1:
     return render_template('home.html', options = get_state_options(counties), reply = get_fun_fact2(counties, request.args['state']))
+  else:
+    return render_template('home.html', options = get_state_options(counties), reply = get_fun_fact3(counties, request.args['state']))
 
 def get_state_options(counties):
   listOfStates = []
@@ -45,6 +47,11 @@ def get_fun_fact2(counties, state):
     if county['State'] == state:
       personCount = personCount + county['Population']['2010 Population']
   fact = "Fun Fact: Your state, " + str(state) + ", has "+ str(personCount) + " people in it."
+  return fact
+
+def get_fun_fact3(counties, state):
+  average = int(get_fun_fact2(counties,state)/get_fun_fact1(counties, state) +0.5)
+  fact = "Fun Fact: Your state, " + str(state) + ", has an average of "+ str(average) + " people per county."
   return fact
   
 
