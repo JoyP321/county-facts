@@ -50,8 +50,11 @@ def get_fun_fact2(counties, state):
   return fact
 
 def get_fun_fact3(counties, state):
-  average = int(get_fun_fact2(counties,state)/get_fun_fact1(counties, state) +0.5)
-  fact = "Fun Fact: Your state, " + str(state) + ", has an average of "+ str(average) + " people per county."
+  vetCount =0
+  for county in counties:
+    if county['State'] == state:
+      vetCount = vetCount + county['Miscellaneous']['Veterans']
+  fact = "Fun Fact: Your state, " + str(state) + ", has "+ str(vetCount) + " vetrans in it."
   return fact
   
 
