@@ -18,7 +18,7 @@ def render_main2():
   print(randomVal)
   if randomVal == 0:
     return render_template('home.html', options = get_state_options(counties), reply = get_fun_fact1(counties, request.args['state']))
-  else if randomVal == 1:
+  elif randomVal == 1:
     return render_template('home.html', options = get_state_options(counties), reply = get_fun_fact2(counties, request.args['state']))
   else:
     return render_template('home.html', options = get_state_options(counties), reply = get_fun_fact3(counties, request.args['state']))
