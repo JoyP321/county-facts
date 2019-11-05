@@ -14,7 +14,7 @@ def render_main():
 def render_main2(): 
   with open('county_demographics.json') as demographics_data:
     counties = json.load(demographics_data)
-  randomVal = int(random()*2)
+  randomVal = int(random.random()*2)
   if randomVal == 0:
     return render_template('home.html', options = get_state_options(counties), reply = get_fun_fact1(counties, request.args['state']))
   else:
