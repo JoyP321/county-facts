@@ -13,7 +13,7 @@ def render_main():
 def render_main2(): 
   with open('county_demographics.json') as demographics_data:
     counties = json.load(demographics_data)
-  return render_template('home.html', options = get_state_options(counties), reply = get_fun_fact(counties, request.args['state']))
+  return render_template('home.html', options = get_state_options(counties), reply = get_fun_fact2(counties, request.args['state']))
 
 def get_state_options(counties):
   listOfStates = []
@@ -25,12 +25,20 @@ def get_state_options(counties):
     options = options + Markup("<option value=\"" + state + "\">" + state + "</option>")
   return options
 
-def get_fun_fact(counties, state):
+def get_fun_fact1(counties, state):
   count =0
   for county in counties:
     if county['State'] == state:
       count+= 1
   fact = "Fun Fact: Your state, " + str(state) + ", has "+ str(count) + " counties in it."
+  return fact
+
+def get_fun_fact2(counties, state):
+  personCount =0
+  for county in counties:
+    if county['State'] == state:
+      personCount = personCount + county['Population']['2010 Population']
+  fact = "Fun Fact: Your state, " + str(state) + ", has "+ str(personCount) + " people in it."
   return fact
   
 
