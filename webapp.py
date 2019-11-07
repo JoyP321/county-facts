@@ -67,7 +67,7 @@ def get_state_fact3(counties, state):
 
 def get_county_fact1(counties, county):
   for c in counties:
-    if c['County']==county
+    if c['County']==county:
       return c['Miscellaneous']['Language Other than English at Home']
 
   
