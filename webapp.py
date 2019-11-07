@@ -66,8 +66,8 @@ def get_state_fact3(counties, state):
   return fact
 
 def get_county_fact1(counties, county):
-  return str(county['Miscellaneous']['Language Other than English at Home']) + "percent of people in " + county + " speak a foreign language at home."
-
+  print( str(county['Miscellaneous']['Language Other than English at Home']) + "percent of people in " + county + " speak a foreign language at home.")
+  return "o"
   
 
 if __name__=="__main__":
