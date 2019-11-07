@@ -66,7 +66,7 @@ def get_state_fact3(counties, state):
   return fact
 
 def get_county_fact1(counties, county):
-  print(int(county['Miscellaneous']['Language Other than English at Home']))
+  print(county['Housing']['Households']))
   return "o"
   
 
