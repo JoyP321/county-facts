@@ -16,11 +16,11 @@ def render_main2():
     counties = json.load(demographics_data)
   randomVal = int(random.random()*3)
   if randomVal == 0:
-    return render_template('home.html', options = get_state_options(counties), reply = get_fun_fact1(counties, request.args['state']), options2 = get_county_options(counties), reply2 = "hh")
+    return render_template('home.html', options = get_state_options(counties), reply = get_state_fact1(counties, request.args['state']), options2 = get_county_options(counties), reply2 = get_county_fact1(counties, request.args['county'])
   elif randomVal == 1:
-    return render_template('home.html', options = get_state_options(counties), reply = get_fun_fact2(counties, request.args['state']), options2 = get_county_options(counties), reply2 = "hh")
+    return render_template('home.html', options = get_state_options(counties), reply = get_state_fact2(counties, request.args['state']), options2 = get_county_options(counties), reply2 = get_county_fact1(counties, request.args['county'])
   else:
-    return render_template('home.html', options = get_state_options(counties), reply = get_fun_fact3(counties, request.args['state']), options2 = get_county_options(counties), reply2 = "hh")
+    return render_template('home.html', options = get_state_options(counties), reply = get_state_fact3(counties, request.args['state']), options2 = get_county_options(counties), reply2 = get_county_fact1(counties, request.args['county'])
 
 def get_state_options(counties):
   listOfStates = []
@@ -41,7 +41,7 @@ def get_county_options(counties):
     options = options + Markup("<option value=\"" + county + "\">" + county + "</option>")
   return options
 
-def get_fun_fact1(counties, state):
+def get_state_fact1(counties, state):
   count =0
   for county in counties:
     if county['State'] == state:
@@ -49,7 +49,7 @@ def get_fun_fact1(counties, state):
   fact = "Fun Fact: Your state, " + str(state) + ", has "+ str(count) + " counties in it."
   return fact
 
-def get_fun_fact2(counties, state):
+def get_state_fact2(counties, state):
   personCount =0
   for county in counties:
     if county['State'] == state:
@@ -57,13 +57,17 @@ def get_fun_fact2(counties, state):
   fact = "Fun Fact: Your state, " + str(state) + ", has "+ str(personCount) + " people in it."
   return fact
 
-def get_fun_fact3(counties, state):
+def get_state_fact3(counties, state):
   vetCount =0
   for county in counties:
     if county['State'] == state:
       vetCount = vetCount + county['Miscellaneous']['Veterans']
   fact = "Fun Fact: Your state, " + str(state) + ", has "+ str(vetCount) + " vetrans in it."
   return fact
+
+def get_county_fact1(counties, county):
+  return str(county['Miscellaneous']['Language Other than English at Home']) + "percent of people in " + county + " speak a foreign language at home."
+
   
 
 if __name__=="__main__":
