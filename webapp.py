@@ -66,8 +66,10 @@ def get_state_fact3(counties, state):
   return fact
 
 def get_county_fact1(counties, county):
-  print(counties[county]['Housing']['Households'])
-  return "o"
+  for c in counties:
+    if c['County']==county
+      return c['Miscellaneous']['Language Other than English at Home']
+
   
 
 if __name__=="__main__":
