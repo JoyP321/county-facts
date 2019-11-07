@@ -16,11 +16,11 @@ def render_main2():
     counties = json.load(demographics_data)
   randomVal = int(random.random()*3)
   if randomVal == 0:
-    return render_template('home.html', options = get_state_options(counties), reply = get_state_fact1(counties, request.args['state']), options2 = get_county_options(counties), reply2 = get_county_fact1(counties, request.args['county']))
+    return render_template('home.html', options = get_state_options(counties), reply = get_state_fact1(counties, request.args['state']), options2 = get_county_options(counties), reply2 = get_county_fact2(counties, request.args['county']))
   elif randomVal == 1:
-    return render_template('home.html', options = get_state_options(counties), reply = get_state_fact2(counties, request.args['state']), options2 = get_county_options(counties), reply2 = get_county_fact1(counties, request.args['county']))
+    return render_template('home.html', options = get_state_options(counties), reply = get_state_fact2(counties, request.args['state']), options2 = get_county_options(counties), reply2 = get_county_fact2(counties, request.args['county']))
   else:
-    return render_template('home.html', options = get_state_options(counties), reply = get_state_fact3(counties, request.args['state']), options2 = get_county_options(counties), reply2 = get_county_fact1(counties, request.args['county']))
+    return render_template('home.html', options = get_state_options(counties), reply = get_state_fact3(counties, request.args['state']), options2 = get_county_options(counties), reply2 = get_county_fact2(counties, request.args['county']))
 
 def get_state_options(counties):
   listOfStates = []
@@ -68,8 +68,12 @@ def get_state_fact3(counties, state):
 def get_county_fact1(counties, county):
   for c in counties:
     if c['County']==county:
-      return str(c['Miscellaneous']['Language Other than English at Home'])+ " percent of people in " + county + " speak a foreign language at home."
+      return "Fun Fact: " + str(c['Miscellaneous']['Language Other than English at Home'])+ " percent of people in " + county + " speak a foreign language at home."
 
+def get_county_fact2(counties, county):
+  for c in counties:
+    if c['County']==county:
+      return "Fun Fact: There are " + str(c['Housing']['Households'])+ " households in " + county
   
 
 if __name__=="__main__":
