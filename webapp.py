@@ -35,7 +35,7 @@ def get_state_options(counties):
 def get_county_options(counties):
   listOfCounties = []
   for county in counties:
-    listOfCounties.append(county)
+    listOfCounties.append(county['County'])
   options=""
   for county in listOfCounties:
     options = options + Markup("<option value=\"" + county + "\">" + county + "</option>")
