@@ -16,7 +16,7 @@ def render_main2():
     counties = json.load(demographics_data)
   randomVal = int(random.random()*3)
   if randomVal == 0:
-    return render_template('home.html', options = get_state_options(counties), reply = get_fun_fact1(counties, request.args['state']), options2 = get_county_options(counties), reply2 = "hh"))
+    return render_template('home.html', options = get_state_options(counties), reply = get_fun_fact1(counties, request.args['state']), options2 = get_county_options(counties), reply2 = "hh")
   elif randomVal == 1:
     return render_template('home.html', options = get_state_options(counties), reply = get_fun_fact2(counties, request.args['state']), options2 = get_county_options(counties), reply2 = "hh")
   else:
