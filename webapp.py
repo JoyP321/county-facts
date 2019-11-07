@@ -26,9 +26,9 @@ def render_main2():
     stateFact = get_state_fact2(counties, request.args['state'])
   
   if randomCountyVal == 0:
-    stateFact = get_county_fact1(counties, request.args['county'])
+    countyFact = get_county_fact1(counties, request.args['county'])
   elif randomCountyVal == 1:
-    stateFact = get_county_fact2(counties, request.args['county'])
+    countyFact = get_county_fact2(counties, request.args['county'])
   
   return render_template('home.html', options = get_state_options(counties), reply = stateFact, options2 = get_county_options(counties), reply2 = countyFact)
 
