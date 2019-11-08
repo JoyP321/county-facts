@@ -14,14 +14,7 @@ def render_first_dropdown():
 def render_second_dropdown():
   with open('county_demographics.json') as demographics_data:
     counties = json.load(demographics_data)
-  randomStateVal = int(random.random()*3) 
-  stateFact = ""
-  if randomStateVal == 0:
-    stateFact = get_state_fact1(counties, request.args['state'])
-  elif randomStateVal == 1:
-    stateFact = get_state_fact2(counties, request.args['state'])
-  else:
-    stateFact = get_state_fact2(counties, request.args['state'])
+ 
   global s
   s = request.args['state']  
   return render_template('home.html', options = get_state_options(counties), reply = Markup("<p>" + stateFact + "</p>"), options2 = get_county_options(counties, s), reply2 = "")
@@ -30,13 +23,23 @@ def render_second_dropdown():
 def render_facts(): 
   with open('county_demographics.json') as demographics_data:
     counties = json.load(demographics_data)
+    
   randomCountyVal = int(random.random()*2)
   if randomCountyVal == 0:
     countyFact = get_county_fact1(counties, request.args['county'])
   elif randomCountyVal == 1:
     countyFact = get_county_fact2(counties, request.args['county'])
   
-  return render_template('home.html', options = get_state_options(counties), reply = "", options2 = get_county_options(counties, s), reply2 = Markup("<p>" + countyFact + "</p>"))
+   randomStateVal = int(random.random()*3) 
+  stateFact = ""
+  if randomStateVal == 0:
+    stateFact = get_state_fact1(counties, s)
+  elif randomStateVal == 1:
+    stateFact = get_state_fact2(counties, s)
+  else:
+    stateFact = get_state_fact2(counties, s)
+    
+  return render_template('home.html', options = get_state_options(counties), reply = Markup("<p>" + stateFact + "</p>"), options2 = get_county_options(counties, s), reply2 = Markup("<p>" + countyFact + "</p>"))
 
 def get_state_options(counties):
   listOfStates = []
