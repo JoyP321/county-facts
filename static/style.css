@@ -1,3 +1,14 @@
 body{
  padding: 20px;
+ background-color: #93acbf;
+}
+
+p{
+  border-radius: 25px;
+  background-color: #d4ecff;
+}
+
+h1{
+  border-radius: 25px;
+  background-color: #d4ecff;
 }
