@@ -5,13 +5,17 @@ import random
 app = Flask(__name__)
 
 @app.route("/")
-def render_main(): 
+def render_first_dropdown(): 
   with open('county_demographics.json') as demographics_data:
     counties = json.load(demographics_data)
-  return render_template('home.html', options = get_state_options(counties), reply = "", options2 = get_county_options(counties), reply2 = "")
+  return render_template('home.html', options = get_state_options(counties), reply = "", options2 = "", reply2 = "")
 
 @app.route("/reply")
-def render_main2(): 
+  def render_second_dropdown():
+    return render_template('home.html', options = get_state_options(counties), reply = "", options2 = get_county_options(counties, request.args['state']), reply2 = "")
+           
+@app.route("/reply2")
+def render_facts(): 
   with open('county_demographics.json') as demographics_data:
     counties = json.load(demographics_data)
   randomStateVal = int(random.random()*3)
@@ -30,7 +34,7 @@ def render_main2():
   elif randomCountyVal == 1:
     countyFact = get_county_fact2(counties, request.args['county'])
   
-  return render_template('home.html', options = get_state_options(counties), reply = Markup("<p>" + stateFact + "</p>"), options2 = get_county_options(counties), reply2 = Markup("<p>" + countyFact + "</p>"))
+  return render_template('home.html', options = get_state_options(counties), reply = Markup("<p>" + stateFact + "</p>"), options2 = get_county_options(counties, request.args['state']), reply2 = Markup("<p>" + countyFact + "</p>"))
 
 def get_state_options(counties):
   listOfStates = []
@@ -42,10 +46,11 @@ def get_state_options(counties):
     options = options + Markup("<option value=\"" + state + "\">" + state + "</option>")
   return options
 
-def get_county_options(counties):
+def get_county_options(counties, state):
   listOfCounties = []
   for county in counties:
-    listOfCounties.append(county['County'])
+    ifcounty['State']== state:
+      listOfCounties.append(county['County'])
   options=""
   for county in listOfCounties:
     options = options + Markup("<option value=\"" + county + "\">" + county + "</option>")
