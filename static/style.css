@@ -5,8 +5,9 @@ body{
 
 p{
   padding:5px;
-  border-radius: 10px;
+  border-radius: 25px;
   background-color: #d4ecff;
+  width:40%;
 }
 
 h1{
