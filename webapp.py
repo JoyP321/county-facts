@@ -3,7 +3,7 @@ import os
 import json
 import random
 app = Flask(__name__)
-s = ""
+s = "f"
 @app.route("/")
 def render_first_dropdown(): 
   with open('county_demographics.json') as demographics_data:
@@ -22,6 +22,8 @@ def render_second_dropdown():
     stateFact = get_state_fact2(counties, request.args['state'])
   else:
     stateFact = get_state_fact2(counties, request.args['state'])
+    
+  print(s)
   s =  request.args['state']
   return render_template('home.html', options = get_state_options(counties), reply = Markup("<p>" + stateFact + "</p>"), options2 = get_county_options(counties, s), reply2 = "")
            
