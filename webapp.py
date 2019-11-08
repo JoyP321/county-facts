@@ -12,6 +12,8 @@ def render_first_dropdown():
 
 @app.route("/reply")
 def render_second_dropdown():
+  with open('county_demographics.json') as demographics_data:
+    counties = json.load(demographics_data)
   return render_template('home.html', options = get_state_options(counties), reply = "", options2 = get_county_options(counties, request.args['state']), reply2 = "")
            
 @app.route("/reply2")
