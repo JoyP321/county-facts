@@ -49,7 +49,7 @@ def get_state_options(counties):
 def get_county_options(counties, state):
   listOfCounties = []
   for county in counties:
-    ifcounty['State']== state:
+    if county['State']== state:
       listOfCounties.append(county['County'])
   options=""
   for county in listOfCounties:
