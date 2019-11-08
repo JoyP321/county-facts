@@ -22,21 +22,19 @@ def render_second_dropdown():
     stateFact = get_state_fact2(counties, request.args['state'])
   else:
     stateFact = get_state_fact2(counties, request.args['state'])
-  print("good rn")
+  
   return render_template('home.html', options = get_state_options(counties), reply = Markup("<p>" + stateFact + "</p>"), options2 = get_county_options(counties, request.args['state']), reply2 = "")
            
 @app.route("/reply2")
 def render_facts(): 
   with open('county_demographics.json') as demographics_data:
     counties = json.load(demographics_data)
-  
   randomCountyVal = int(random.random()*2)
-
   if randomCountyVal == 0:
     countyFact = get_county_fact1(counties, request.args['county'])
   elif randomCountyVal == 1:
     countyFact = get_county_fact2(counties, request.args['county'])
-  
+  print("good rn")
   return render_template('home.html', options = get_state_options(counties), reply = "", options2 = get_county_options(counties, request.args['state']), reply2 = Markup("<p>" + countyFact + "</p>"))
 
 def get_state_options(counties):
