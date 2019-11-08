@@ -23,7 +23,7 @@ def render_second_dropdown():
   else:
     stateFact = get_state_fact2(counties, request.args['state'])
     
-  return render_template('home.html', options = get_state_options(counties), reply = reply = Markup("<p>" + stateFact + "</p>"), options2 = get_county_options(counties, request.args['state']), reply2 = "")
+  return render_template('home.html', options = get_state_options(counties), reply = Markup("<p>" + stateFact + "</p>"), options2 = get_county_options(counties, request.args['state']), reply2 = "")
            
 @app.route("/reply2")
 def render_facts(): 
