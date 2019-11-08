@@ -3,7 +3,7 @@ import os
 import json
 import random
 app = Flask(__name__)
-
+s = ""
 @app.route("/")
 def render_first_dropdown(): 
   with open('county_demographics.json') as demographics_data:
@@ -22,8 +22,8 @@ def render_second_dropdown():
     stateFact = get_state_fact2(counties, request.args['state'])
   else:
     stateFact = get_state_fact2(counties, request.args['state'])
-  
-  return render_template('home.html', options = get_state_options(counties), reply = Markup("<p>" + stateFact + "</p>"), options2 = get_county_options(counties, request.args['state']), reply2 = "")
+  s =  request.args['state']
+  return render_template('home.html', options = get_state_options(counties), reply = Markup("<p>" + stateFact + "</p>"), options2 = get_county_options(counties, s), reply2 = "")
            
 @app.route("/reply2")
 def render_facts(): 
@@ -34,7 +34,7 @@ def render_facts():
     countyFact = get_county_fact1(counties, request.args['county'])
   elif randomCountyVal == 1:
     countyFact = get_county_fact2(counties, request.args['county'])
-  print("good rn")
+  print(s)
   return render_template('home.html', options = get_state_options(counties), reply = "", options2 = get_county_options(counties, request.args['state']), reply2 = Markup("<p>" + countyFact + "</p>"))
 
 def get_state_options(counties):
