@@ -30,7 +30,7 @@ def render_facts():
   elif randomCountyVal == 1:
     countyFact = get_county_fact2(counties, request.args['county'])
   
-   randomStateVal = int(random.random()*3) 
+  randomStateVal = int(random.random()*3) 
   stateFact = ""
   if randomStateVal == 0:
     stateFact = get_state_fact1(counties, s)
