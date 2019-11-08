@@ -11,26 +11,22 @@
   <body>
     <h1>Fun Fact Generator!</h1>
     <p>Select a state and county for fun facts!</p>
+    <br><br>
     <form action='/reply'>
       <select name="state">
         {{ options }}
       </select>
-      <br><br>
-      {{ reply }}
-      <br><br>
       <input type="submit">
     </form>
-    
+    <br><br>
     <form action = '/reply2'>
       <select name="county">
         {{ options2 }}
       </select>
-      <br><br>
-      {{ reply2 }}
-      <br><br>
       <input type="submit">
     </form> 
-    
+    {{ reply }}
+    {{ reply2 }}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 
