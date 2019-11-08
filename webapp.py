@@ -14,29 +14,30 @@ def render_first_dropdown():
 def render_second_dropdown():
   with open('county_demographics.json') as demographics_data:
     counties = json.load(demographics_data)
-  return render_template('home.html', options = get_state_options(counties), reply = "", options2 = get_county_options(counties, request.args['state']), reply2 = "")
-           
-@app.route("/reply2")
-def render_facts(): 
-  with open('county_demographics.json') as demographics_data:
-    counties = json.load(demographics_data)
-  randomStateVal = int(random.random()*3)
-  randomCountyVal = int(random.random()*2)
+  randomStateVal = int(random.random()*3) 
   stateFact = ""
-  countyFact = ""
   if randomStateVal == 0:
     stateFact = get_state_fact1(counties, request.args['state'])
   elif randomStateVal == 1:
     stateFact = get_state_fact2(counties, request.args['state'])
   else:
     stateFact = get_state_fact2(counties, request.args['state'])
+    
+  return render_template('home.html', options = get_state_options(counties), reply = reply = Markup("<p>" + stateFact + "</p>"), options2 = get_county_options(counties, request.args['state']), reply2 = "")
+           
+@app.route("/reply2")
+def render_facts(): 
+  with open('county_demographics.json') as demographics_data:
+    counties = json.load(demographics_data)
   
+  randomCountyVal = int(random.random()*2)
+
   if randomCountyVal == 0:
     countyFact = get_county_fact1(counties, request.args['county'])
   elif randomCountyVal == 1:
     countyFact = get_county_fact2(counties, request.args['county'])
   
-  return render_template('home.html', options = get_state_options(counties), reply = Markup("<p>" + stateFact + "</p>"), options2 = get_county_options(counties, request.args['state']), reply2 = Markup("<p>" + countyFact + "</p>"))
+  return render_template('home.html', options = get_state_options(counties), reply = "", options2 = get_county_options(counties, request.args['state']), reply2 = Markup("<p>" + countyFact + "</p>"))
 
 def get_state_options(counties):
   listOfStates = []
