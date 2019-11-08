@@ -11,8 +11,8 @@ def render_first_dropdown():
   return render_template('home.html', options = get_state_options(counties), reply = "", options2 = "", reply2 = "")
 
 @app.route("/reply")
-  def render_second_dropdown():
-    return render_template('home.html', options = get_state_options(counties), reply = "", options2 = get_county_options(counties, request.args['state']), reply2 = "")
+def render_second_dropdown():
+  return render_template('home.html', options = get_state_options(counties), reply = "", options2 = get_county_options(counties, request.args['state']), reply2 = "")
            
 @app.route("/reply2")
 def render_facts(): 
