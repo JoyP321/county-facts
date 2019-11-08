@@ -30,7 +30,7 @@ def render_main2():
   elif randomCountyVal == 1:
     countyFact = get_county_fact2(counties, request.args['county'])
   
-  return render_template('home.html', options = get_state_options(counties), reply = Markup("<p>" + stateFact + "</p>), options2 = get_county_options(counties), reply2 = Markup("<p>" + countyFact + "</p>"))
+  return render_template('home.html', options = get_state_options(counties), reply = Markup("<p>" + stateFact + "</p>"), options2 = get_county_options(counties), reply2 = Markup("<p>" + countyFact + "</p>"))
 
 def get_state_options(counties):
   listOfStates = []
